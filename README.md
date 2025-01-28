@@ -1,5 +1,7 @@
 # Backup and Restore PostgreSQL Docker Image
 
+[![GitHub Stars](https://img.shields.io/github/stars/saulotarsobc/pg-bkp-restore.svg)](https://github.com/saulotarsobc/pg-bkp-restore/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/saulotarsobc/pg-bkp-restore.svg)](https://github.com/saulotarsobc/pg-bkp-restore/issues) [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/saulotarsobc/pg-bkp-restore.svg)](https://github.com/saulotarsobc/pg-bkp-restore/pulls) [![GitHub Forks](https://img.shields.io/github/forks/saulotarsobc/pg-bkp-restore.svg)](https://github.com/saulotarsobc/pg-bkp-restore/network) [![GitHub Last Commit](https://img.shields.io/github/last-commit/saulotarsobc/pg-bkp-restore.svg)](https://github.com/saulotarsobc/pg-bkp-restore/commits)
+
 ## Overview
 
 Essa imagem Docker foi projetada para realizar **backup** e **restauração** de bancos de dados PostgreSQL de forma simples e eficiente. A automação é feita através de um script que utiliza `pg_dump` e `pg_restore`, com suporte tanto para ambientes de produção quanto de desenvolvimento.
@@ -45,7 +47,7 @@ services:
       - DO_RESTORE=1 # 1: Ativar restauração, 0: Desativar
 ```
 
-````
+---
 
 #### Comando direto
 
@@ -99,5 +101,4 @@ Esse projeto é distribuído sob a licença **MIT**.
 
 Contribua ou reporte problemas diretamente no repositório! 🚀
 
-[![GitHub Issues](https://img.shields.io/github/issues/saulotarsobc/pg-bkp-restore.svg)](https://github.com/saulotarsobc/pg-bkp-restore/issues)
-````
+[🔹 saulotarsobc/pg-bkp-restore](https://github.com/saulotarsobc/pg-bkp-restore)
