@@ -1,0 +1,22 @@
+services:
+  app:
+    image: saulotarsobc/pg-bkp-restore:latest
+    restart: no
+    volumes:
+      - ./data/files:/files
+    environment:
+      # Production
+      - PROD_DB_HOST=my-database.com.br
+      - PROD_DB_PORT=5435
+      - PROD_DB_USER=postgres
+      - PROD_DB_PASS=superPassword
+      - PROD_DB_NAME=my-db
+      # Development - Change acording to your environment
+      - DEV_DB_HOST=my-another-database.com.br
+      - DEV_DB_PORT=5432
+      - DEV_DB_USER=postgres
+      - DEV_DB_PASS=superPassword
+      - DEV_DB_NAME=my-another-db
+      # Configuration
+      - DO_BACKUP=1 # 1: true, 0: false
+      - DO_RESTORE=1 # 1: true, 0: false
