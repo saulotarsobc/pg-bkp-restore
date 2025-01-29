@@ -1,2 +1,5 @@
-.env
-/data
+**/package-lock.json
+**/node_modules
+**/.env
+**/dist
+**/*.dump
