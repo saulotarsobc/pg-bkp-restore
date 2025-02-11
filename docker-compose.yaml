@@ -1,5 +1,6 @@
 services:
-  app:
+  pg-bkp-restore-dev:
+    container_name: pg-bkp-restore-dev
     build:
       context: .
       dockerfile: Dockerfile
@@ -7,18 +8,53 @@ services:
     volumes:
       - ./data/files:/files
     environment:
-      # Production
-      - PROD_DB_HOST=my-database.com.br
-      - PROD_DB_PORT=5435
-      - PROD_DB_USER=postgres
-      - PROD_DB_PASS=superPassword
-      - PROD_DB_NAME=my-db
-      # Development - Change acording to your environment
-      - DEV_DB_HOST=my-another-database.com.br
-      - DEV_DB_PORT=5432
-      - DEV_DB_USER=postgres
-      - DEV_DB_PASS=superPassword
-      - DEV_DB_NAME=my-another-db
+      # Production - Change acording to your environment
+      - SRC_DB_HOST=my-database.com.br
+      - SRC_DB_PORT=5435
+      - SRC_DB_USER=postgres
+      - SRC_DB_PASS=superPassword
+      - SRC_DB_NAME=my-db
+      # Destination - Change acording to your environment
+      - DEST_DB_HOST=my-another-database.com.br
+      - DEST_DB_PORT=5432
+      - DEST_DB_USER=postgres
+      - DEST_DB_PASS=superPassword
+      - DEST_DB_NAME=my-another-db
       # Configuration
-      - DO_BACKUP=1 # 1: true, 0: false
-      - DO_RESTORE=1 # 1: true, 0: false
+      - DO_BACKUP=1 # 1: true, 0: false - Do backup
+      - DO_RESTORE=1 # 1: true, 0: false - Do restore
+
+  pg-bkp-restore-prod:
+    container_name: pg-bkp-restore-prod
+    image: saulotarsobc/pg-bkp-restore:latest
+    restart: no
+    volumes:
+      - ./data/files:/files
+    environment:
+      # Production - Change acording to your environment
+      - SRC_DB_HOST=my-database.com.br
+      - SRC_DB_PORT=5435
+      - SRC_DB_USER=postgres
+      - SRC_DB_PASS=superPassword
+      - SRC_DB_NAME=my-db
+      # Destination - Change acording to your environment
+      - DEST_DB_HOST=my-another-database.com.br
+      - DEST_DB_PORT=5432
+      - DEST_DB_USER=postgres
+      - DEST_DB_PASS=superPassword
+      - DEST_DB_NAME=my-another-db
+      # Configuration
+      - DO_BACKUP=1 # 1: true, 0: false - Do backup
+      - DO_RESTORE=1 # 1: true, 0: false - Do restore
+
+  pg-db-example:
+    container_name: pg-db-example
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
