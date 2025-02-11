@@ -33,16 +33,16 @@ services:
     volumes:
       - ./data/files:/files
     environment:
-      - PROD_DB_HOST=my-database.com.br
-      - PROD_DB_PORT=5435
-      - PROD_DB_USER=postgres
-      - PROD_DB_PASS=superPassword
-      - PROD_DB_NAME=my-db
-      - DEV_DB_HOST=my-another-database.com.br
-      - DEV_DB_PORT=5432
-      - DEV_DB_USER=postgres
-      - DEV_DB_PASS=superPassword
-      - DEV_DB_NAME=my-another-db
+      - SRC_DB_HOST=my-database.com.br
+      - SRC_DB_PORT=5435
+      - SRC_DB_USER=postgres
+      - SRC_DB_PASS=superPassword
+      - SRC_DB_NAME=my-db
+      - DEST_DB_HOST=my-another-database.com.br
+      - DEST_DB_PORT=5432
+      - DEST_DB_USER=postgres
+      - DEST_DB_PASS=superPassword
+      - DEST_DB_NAME=my-another-db
       - DO_BACKUP=1 # 1: Ativar backup, 0: Desativar
       - DO_RESTORE=1 # 1: Ativar restauração, 0: Desativar
 ```
@@ -55,16 +55,16 @@ Para executar diretamente, utilize:
 
 ```bash
 docker run -v $(pwd)/data/files:/files \
-  -e PROD_DB_HOST=my-database.com.br \
-  -e PROD_DB_PORT=5435 \
-  -e PROD_DB_USER=postgres \
-  -e PROD_DB_PASS=superPassword \
-  -e PROD_DB_NAME=my-db \
-  -e DEV_DB_HOST=my-another-database.com.br \
-  -e DEV_DB_PORT=5432 \
-  -e DEV_DB_USER=postgres \
-  -e DEV_DB_PASS=superPassword \
-  -e DEV_DB_NAME=my-another-db \
+  -e SRC_DB_HOST=my-database.com.br \
+  -e SRC_DB_PORT=5435 \
+  -e SRC_DB_USER=postgres \
+  -e SRC_DB_PASS=superPassword \
+  -e SRC_DB_NAME=my-db \
+  -e DEST_DB_HOST=my-another-database.com.br \
+  -e DEST_DB_PORT=5432 \
+  -e DEST_DB_USER=postgres \
+  -e DEST_DB_PASS=superPassword \
+  -e DEST_DB_NAME=my-another-db \
   -e DO_BACKUP=1 \
   -e DO_RESTORE=1 \
   saulotarsobc/pg-bkp-restore:latest
@@ -80,16 +80,16 @@ docker run -v $(pwd)/data/files:/files \
 
 | Variável       | Descrição                             | Exemplo                      |
 | -------------- | ------------------------------------- | ---------------------------- |
-| `PROD_DB_HOST` | Host do banco de produção             | `my-database.com.br`         |
-| `PROD_DB_PORT` | Porta do banco de produção            | `5435`                       |
-| `PROD_DB_USER` | Usuário do banco de produção          | `postgres`                   |
-| `PROD_DB_PASS` | Senha do banco de produção            | `superPassword`              |
-| `PROD_DB_NAME` | Nome do banco de produção             | `my-db`                      |
-| `DEV_DB_HOST`  | Host do banco de desenvolvimento      | `my-another-database.com.br` |
-| `DEV_DB_PORT`  | Porta do banco de desenvolvimento     | `5432`                       |
-| `DEV_DB_USER`  | Usuário do banco de desenvolvimento   | `postgres`                   |
-| `DEV_DB_PASS`  | Senha do banco de desenvolvimento     | `superPassword`              |
-| `DEV_DB_NAME`  | Nome do banco de desenvolvimento      | `my-another-db`              |
+| `SRC_DB_HOST`  | Host do banco de produção             | `my-database.com.br`         |
+| `SRC_DB_PORT`  | Porta do banco de produção            | `5435`                       |
+| `SRC_DB_USER`  | Usuário do banco de produção          | `postgres`                   |
+| `SRC_DB_PASS`  | Senha do banco de produção            | `superPassword`              |
+| `SRC_DB_NAME`  | Nome do banco de produção             | `my-db`                      |
+| `DEST_DB_HOST` | Host do banco de desenvolvimento      | `my-another-database.com.br` |
+| `DEST_DB_PORT` | Porta do banco de desenvolvimento     | `5432`                       |
+| `DEST_DB_USER` | Usuário do banco de desenvolvimento   | `postgres`                   |
+| `DEST_DB_PASS` | Senha do banco de desenvolvimento     | `superPassword`              |
+| `DEST_DB_NAME` | Nome do banco de desenvolvimento      | `my-another-db`              |
 | `DO_BACKUP`    | Realizar backup (1: Sim, 0: Não)      | `1`                          |
 | `DO_RESTORE`   | Realizar restauração (1: Sim, 0: Não) | `1`                          |
 
