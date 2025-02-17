@@ -1,11 +1,12 @@
 set -e
 
+echo "pg-bkp-restore v4.0.0"
 # Backup
 if [ "$DO_BACKUP" = "1" ]; then
     echo "Criando backup do banco de dados..."
     export PGPASSWORD="$SRC_DB_PASS"
     
-    pg_dump -h "$SRC_DB_HOST" -p "$SRC_DB_PORT" -U "$SRC_DB_USER" -Fc --no-owner --no-privileges -d "$SRC_DB_NAME" -f /files/backup.dump --verbose;
+    pg_dump -h "$SRC_DB_HOST" -p "$SRC_DB_PORT" -U "$SRC_DB_USER" -Fc --no-owner --no-privileges --no-comments -d "$SRC_DB_NAME" -f /files/backup.dump --verbose;
 fi
 
 # Restore
