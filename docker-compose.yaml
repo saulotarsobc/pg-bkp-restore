@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     restart: no
     volumes:
-      - ./data/files:/files
+      - pg-bkp-restore-dev-data:/files
     environment:
       # Production - Change acording to your environment
       - SRC_DB_HOST=my-database.com.br
@@ -29,7 +29,7 @@ services:
     image: saulotarsobc/pg-bkp-restore:latest
     restart: no
     volumes:
-      - ./data/files:/files
+      - pg-bkp-restore-prod-data:/files
     environment:
       # Production - Change acording to your environment
       - SRC_DB_HOST=my-database.com.br
@@ -47,8 +47,8 @@ services:
       - DO_BACKUP=1 # 1: true, 0: false - Do backup
       - DO_RESTORE=1 # 1: true, 0: false - Do restore
 
-  pg-db-example:
-    container_name: pg-db-example
+  pg-bkp-restore-db:
+    container_name: pg-bkp-restore-db
     image: postgres
     environment:
       POSTGRES_USER: postgres
@@ -57,4 +57,12 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - pg-bkp-restore-db-data:/var/lib/postgresql/data
+
+volumes:
+  pg-bkp-restore-db-data:
+    driver: local
+  pg-bkp-restore-prod-data:
+    driver: local
+  pg-bkp-restore-dev-data:
+    driver: local
