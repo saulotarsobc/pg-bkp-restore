@@ -25,3 +25,4 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 Write-Host "Imagem Docker construída e enviada com sucesso!" -ForegroundColor Green
+Write-Host "A imagem foi enviada para o Docker Hub com o nome ${imageName}:${imageTag}. https://hub.docker.com/repository/docker/saulotarsobc/pg-bkp-restore/general" -ForegroundColor Cyan
